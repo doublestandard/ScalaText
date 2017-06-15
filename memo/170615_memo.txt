@@ -1,0 +1,8 @@
+2017/06/15
+1．scriptファイルをsrcからscriptディレクトリに移動。
+2．classファイルを選択して「実行」
+3．ターミナルを起動して、out\production\Scalatextに移動。
+4．scalaコマンド実行。
+5.scalaターミナル上でnewしたりする。
+※2から直接newしてテストできるようにしたい
+→2のconsole内で、newしたら、Crtl＋Enterで実行
