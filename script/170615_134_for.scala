@@ -30,3 +30,14 @@ def scalaFiles =
     file <-fileHere
     if file.getName.endsWith(".scala")
   } yield  file
+
+val forLineLengths =
+  for{ file <- fileHere
+    if file.getName.endsWith(".scala");
+    line <- fileLines(file);
+       trimmed = line.trim
+       if trimmed.matches(".*for.*")
+  } yield trimmed.length
+
+for(i <- forLineLengths)
+  println(i)
