@@ -12,7 +12,10 @@ abstract class Element {
   def above(that: Element): Element = {
 
     val this1 = this widen that.width
+    println("this1:" + this1.width)
     val that1 = that widen  this.width
+    println("that1:" + that1.width)
+    assert(this1.width == that1.width)
     elem(this1.contents ++ that1.contents)
   }
   def beside(that:Element) :Element = {
@@ -25,13 +28,21 @@ abstract class Element {
     )
   }
 
-  def widen(w:Int):Element =
-    if(w <= width) this
-    else {
-      val left = elem(' ',(w-width) / 2 ,height)
-      val right = elem(' ',w - width -left.width,height)
-      left beside this beside right
+  def widen(w:Int):Element = {
+    println("w:" + w + " width:" + width)
+    if (w <= width) {
+      this
     }
+    else {
+      val left = elem(' ', (w - width) / 2, height)
+      assert(left.width == (w - width) / 2)
+      println("left.width :" + left.width)
+      val right = elem(' ', w - width - left.width, height)
+      println("right.width :" + (w - width - left.width))
+      assert(right.width == (w - width - left.width))
+      left beside this beside right
+    } ensuring (w <= _.width)
+  }
 
   def heighten(h:Int):Element =
     if(h<=height) this
