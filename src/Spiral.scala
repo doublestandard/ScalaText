@@ -26,8 +26,7 @@ object Spiral {
 
   def main(args: Array[String]): Unit = {
     val nSides = args(0).toInt
-    val result = spiral(nSides,0)
-    print(result)
+    print(spiral(nSides,0))
   }
 
 }

@@ -1,0 +1,4 @@
+Scalatestの導入方法
+（Maven形式でのlibraryの追加）
+how to add scala-test support to intellij - Stack Overflow
+https://stackoverflow.com/questions/21246290/how-to-add-scala-test-support-to-intellij
