@@ -1,6 +1,7 @@
 /**
   * Created by JP11507 on 2017/06/19.
   */
+
 import Element.elem
 abstract class Element {
   def contents: Array[String]
