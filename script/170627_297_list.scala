@@ -1,3 +1,5 @@
+
+
 /**
   * Created by JP11507 on 2017/06/27.
   */
@@ -55,4 +57,67 @@ def msort[T](less: (T, T) => Boolean)
   }
 }
 // フォーマット：ctr + alt + l
+msort((x: Int, y: Int) => x < y)(List(5, 7, 1, 3))
+
+// カリー化
+// 小さい順にソート
+val intSort = msort((x: Int, y: Int) => x < y) _
+// 大きい順にソート
+val reverseSort = msort((x: Int, y: Int) => x > y) _
+val mixedInt = List(7, 4, 7, 3, 5, 6, 4, 1, 9)
+
+intSort(mixedInt)
+reverseSort(mixedInt)
+
+// 16.7.1 リストの各要素のマッピング
+List(1, 2, 3) map (_ + 1)
+// res3: List[Int] = List(2, 3, 4)
+
+val words = List("the", "quick", "brown", "fox")
+words map (_.length)
+//res4: List[Int] = List(3, 5, 5, 3)
+
+words map (_.toList.reverse.mkString)
+//res5: List[String] = List(eht, kciuq, nworb, xof)
+
+// floatMapとmapの違い
+words map (_.toList)
+// res6: List[List[Char]] = List(List(t, h, e), List(q, u, i, c, k), List(b, r, o, w,n), List(f, o, x))
+
+words flatMap (_.toList)
+// res7: List[Char] = List(t, h, e, q, u, i, c, k, b, r, o, w, n, f, o, x)
+
+// 1<=j<i<5になるすべての(i,j)のリストを作成する
+List.range(1, 5) flatMap (
+  i => List.range(1, i) map (j => (i, j))
+  )
+// 上と同じ意味
+for (i <- List.range(1, 5); j <- List.range(1, i)) yield (i, j)
+
+// foreachを使った場合
+var sum = 0
+List(1, 2, 3, 4, 5) foreach (sum += _)
+sum
+//res11: Int = 15
+
+//16.7.2 リストのフィルタリング
+List(1, 2, 3, 4, 5) filter (_ % 2 == 0)
+// res12: List[Int] = List(2, 4)
+
+words filter (_.length == 3)
+//res13: List[String] = List(the, fox)
+
+// partition methodはfalseになった要素を別のListで返す
+List(1, 2, 3, 4, 5) partition (_ % 2 == 0)
+//res14: (List[Int], List[Int]) = (List(2, 4),List(1, 3, 5))
+
+
+// findは条件にあう要素のindexを返す
+List(1,2,3,4,5) find (_ % 2 == 0)
+// res15: Option[Int] = Some(2)
+
+List(1,2,3,4,5) find (_ < 0)
+//res16: Option[Int] = None
+
+
 
